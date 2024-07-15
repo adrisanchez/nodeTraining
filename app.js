@@ -3,16 +3,16 @@ const bodyParser = require("body-parser");
 const path = require("path");
 
 const errorController = require("./controllers/error");
+const db = require("./util/database");
 
 const app = express();
 
-app.set('view engine', 'ejs');
+app.set("view engine", "ejs");
 //app.set("view engine", "pug");
 app.set("views", "views");
 
 const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
-const e = require("express");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));

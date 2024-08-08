@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { resolveContent } = require("nodemailer/lib/shared");
 
 const Schema = mongoose.Schema;
 
@@ -11,6 +12,8 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
+  resetToken: String,
+  resetTokenExpiration: Date,
   cart: {
     items: [
       {

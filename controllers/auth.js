@@ -152,12 +152,12 @@ exports.postSignup = (req, res, next) => {
       })
       .then((result) => {
         res.redirect("/login");
-        return transporter.sendMail({
-          to: email,
-          from: "asanchezrecuero@gmail.com",
-          subject: "Signup succeeded!",
-          html: "<h1>You successfully signed up!</h1>",
-        });
+        // return transporter.sendMail({
+        //   to: email,
+        //   from: "asanchezrecuero@gmail.com",
+        //   subject: "Signup succeeded!",
+        //   html: "<h1>You successfully signed up!</h1>",
+        // });
       })
       .catch((err) => {
         console.log(err);
@@ -207,12 +207,12 @@ exports.postReset = (req, res, next) => {
       })
       .then((result) => {
         res.redirect("/login");
-        return transporter.sendMail({
-          to: req.body.email,
-          from: "asanchezrecuero@gmail.com",
-          subject: "Password Reset",
-          html: `<p>You requested a password reset.</p><p>Click <a href="http://localhost:3000/reset/${token}">here</a> to set a new password.</p>`,
-        });
+        // return transporter.sendMail({
+        //   to: req.body.email,
+        //   from: "asanchezrecuero@gmail.com",
+        //   subject: "Password Reset",
+        //   html: `<p>You requested a password reset.</p><p>Click <a href="http://localhost:3000/reset/${token}">here</a> to set a new password.</p>`,
+        // });
       })
       .catch((err) => {
         console.log(err);

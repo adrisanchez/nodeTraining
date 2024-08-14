@@ -31,7 +31,7 @@ const fileStorage = multer.diskStorage({
     cb(null, "images");
   },
   filename: (req, file, cb) => {
-    cb(null, "/" + new Date().toISOString() + "-" + file.originalname);
+    cb(null, new Date().toISOString().replace(/:/g, "-") + "-" + file.originalname);
   },
 });
 
@@ -55,7 +55,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(multer({ storage: fileStorage, fileFilter: fileFilter }).single("image"));
 
 app.use(express.static(path.join(__dirname, "public")));
-app.use("/images", express.static(path.join(__dirname, "images")));
+app.use("/images/", express.static(path.join(__dirname, "images")));
 
 app.use(
   session({
@@ -103,12 +103,10 @@ app.get("/500", errorController.get500);
 app.use(errorController.get404);
 
 app.use((error, req, res, next) => {
-  console.log("req.session");
-  console.log(req.session);
   res.status(500).render("500", {
     pageTitle: "Error",
     path: "/500",
-    isAuthenticated: req.session.isLoggedIn,
+    isAuthenticated: req.session ? req.session.isLoggedIn : false,
   });
 });
 

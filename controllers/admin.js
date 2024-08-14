@@ -57,7 +57,7 @@ exports.postAddProduct = (req, res, next) => {
     title: title,
     price: price,
     description: description,
-    imageUrl: imageUrl,
+    imageUrl: "/" + imageUrl,
     userId: req.user,
   });
   product
@@ -139,7 +139,7 @@ exports.postEditProduct = (req, res, next) => {
       product.price = updatedPrice;
       product.description = updatedDesc;
       if (updatedImage) {
-        product.imageUrl = updatedImage.path;
+        product.imageUrl = "/" + updatedImage.path;
       }
       return product.save().then((result) => {
         console.log("UPDATED PRODUCT!");
